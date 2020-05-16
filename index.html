@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="list_of_functions.js"></script>
+    <script src="big_texts.js"></script>
+    <title>Cardgame</title>
+    <link href="https://fonts.googleapis.com/css?family=Kelly+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="../icons/icon.ico">
+    <!--Bootstrap start-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</head>
+
+<body onload="onload_function_1();auto_enter();">
+    <script>
+
+var replacement_cards= new Array();
+
+    </script>
+    <div id="start"style="display:block">
+        <input type="text" id="name_input" placeholder="Введите имя..." value="unknown">
+        <button id="start_button">Начать</button>
+        <br>
+        <input type="text" id="type_dficult" list="dficult_list">
+        <br>
+        <p>Укажите цвет противника: <input type="color" name="bg" value="#ff0000" id="bot_1_color"></p>
+        <datalist id="dficult_list">
+            <option value="Легко"></option>
+            <option value="Нормально"></option>
+            <option value="В разработке"></option>
+            <option value="В разработке"></option>
+        </datalist>
+        <script>
+            
+            start_button.onclick=function(){
+                if(name_input.value!="" && type_dficult.value!="В разработке"&& type_dficult.value!=""){
+                    //time_battle_interval()
+                    player_name=name_input.value;
+                    game_main.style.display="block"
+                    game.style.display="block"
+                    start.style.display="none"
+                    player_name_div.innerHTML=player_name
+                    switch (type_dficult.value) {
+                        case "Легко":
+                            main_dificult="eazy"
+                            break;
+                        case "Нормально":
+                            main_dificult="normal"
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                }
+                
+            }
+        </script>
+    </div>
+    <input type="text" id="div_for_ctrlc" style="display: none;">
+    <div id="score_podrobno" style="display:none;font-family: 'Share Tech Mono', monospace;width: 20vw;height: 47vh;background-color: rgba(255, 255, 255, 0.7);position: absolute;top: 5vh;left: 38.5vw;z-index: 30;padding: 5vh;">
+        <h1 style="display: flex;justify-content: center;"><b>Счёт</b></h1>
+        <br>
+        <br>
+        <div id="flesh_royale" style="display: flex;height: 3vh;justify-content: space-between;"><div>Флеш рояль:</div>     <div id="number_komb_1">0</div></div>
+        <div id="strit_flesh" style="display: flex;height: 3vh;justify-content: space-between;"> <div>Стрит флеш:</div>     <div id="number_komb_2">0</div></div>
+        <div id="kare" style="display: flex;height: 3vh;justify-content: space-between;">        <div>Каре:</div>           <div id="number_komb_3">0</div></div>
+        <div id="ful_house" style="display: flex;height: 3vh;justify-content: space-between;">   <div>Фулл хаус:</div>      <div id="number_komb_4">0</div></div>
+        <div id="flesh" style="display: flex;height: 3vh;justify-content: space-between;">       <div>Флеш:</div>           <div id="number_komb_5">0</div></div>
+        <div id="strit" style="display: flex;height: 3vh;justify-content: space-between;">       <div>Стрит:</div>          <div id="number_komb_6">0</div></div>
+        <div id="troyka" style="display: flex;height: 3vh;justify-content: space-between;">      <div>Трипс:</div>          <div id="number_komb_7">0</div></div>
+        <div id="twopary" style="display: flex;height: 3vh;justify-content: space-between;">     <div>Две пары:</div>       <div id="number_komb_8">0</div></div>
+        <div id="para" style="display: flex;height: 3vh;justify-content: space-between;">        <div>Пара:</div>           <div id="number_komb_9">0</div></div>
+        <div id="starshaya" style="display: flex;height: 3vh;justify-content: space-between;">   <div>Старшая карта:</div>  <div id="number_komb_10">0</div></div>
+        <br>
+        <div id="starshaya" style="display: flex;height: 3vh;justify-content: space-between;">   <div>Всего:</div>  <div id="number_komb_all" style="width: 3vw;text-align: right;" title="">0</div></div>
+        
+        </div>
+        <canvas id="matrix_canvas" style="display:none;"></canvas>
+    <div id="game_main" style="display:none">
+        
+        <div id="error_table" style="background-color:rgba(0,0,0,0);position:absolute;top:0px;left:0px;width: 100vw;height: 100vh;z-index: 0;"></div>
+        <div id="score_sravn_main" style="position: absolute;left: 5vw;top: 25vh;display: none;">
+            <table style="background-color: white;" border="1.0">
+                <tr>
+                    <td colspan="2" style="text-align: center;">Показатели</td>
+                </tr>
+                <tr>
+                    <td id="names_sravn_bot_1" style="text-align: center;"></td>
+                    <td id="names_sravn_player" style="text-align: center;"></td>
+                </tr> 
+                <tr> 
+                    <td id="score_sravn_bot_1" style="text-align: center;"></td>
+                    <td id="score_sravn_player" style="text-align: center;"></td>
+                </tr>
+
+            </table>
+        </div>
+        
+
+<!--working plase start-->
+        <div id="last_komb_sravn_main" style="position: absolute;left: 5vw;top: 25vh;display: block;">
+            <table style="background-color: white;" border="1.0">
+                <tr>
+                    <td colspan="2" style="text-align: center;">Показатели текущего раунда</td>
+                </tr>
+                <tr>
+                    <td id="names_last_komb_sravn_bot_1" style="text-align: center;"></td>
+                    <td id="names_last_komb_sravn_player" style="text-align: center;"></td>
+                </tr> 
+                <tr> 
+                    <td id="last_komb_sravn_bot_1" style="text-align: center;">-</td>
+                    <td id="last_komb_sravn_player" style="text-align: center;">-</td>
+                </tr>
+                <tr> 
+                    <td colspan="2" id="last_komb_winer_name" style="text-align: center;">-</td>
+                </tr>
+
+            </table>
+        </div>
+<!--working plase end-->
+<div id="bot_1_cards_main" style="display: flex;justify-content: space-between;width: 30vw;position: absolute;top: 0.5vh;left:35vw">
+    <div id="card_1_bot_1_div"><img id="card_1_bot_1" src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" style="width: 5vw;border-radius: 7px;"></div>
+    <div id="card_2_bot_1_div"><img id="card_2_bot_1" src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" style="width: 5vw;border-radius: 7px;"></div>
+    <div id="card_3_bot_1_div"><img id="card_3_bot_1" src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" style="width: 5vw;border-radius: 7px;"></div>
+    <div id="card_4_bot_1_div"><img id="card_4_bot_1" src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" style="width: 5vw;border-radius: 7px;"></div>
+    <div id="card_5_bot_1_div"><img id="card_5_bot_1" src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" style="width: 5vw;border-radius: 7px;"></div>
+</div>
+<div id="bot_1_info_area" style="position: absolute;top: 0vh;left:70vw;">
+    <div id="info_bot_1_main" style="background-color: none;width: 10vw;height: 7vw;padding: 0.33vw;font-family: 'Kelly Slab', cursive;box-shadow: inset 0 0 6px;">
+        <div id="bot_1_name" style="display: flex; justify-content: space-between;">
+            <div>Имя</div>
+            <div id="name_bot_1_main">Бот №1</div>
+        </div>
+        <div id="bot_1_money" style="display: flex; justify-content: space-between;">
+            <div>Деньги</div>
+            <div id="money_bot_1_main">10000</div>
+        </div>
+        <div id="bot_1_stavka" style="display: flex; justify-content: space-between;">
+            <div>Ставка</div>
+            <div id="stavka_bot_1_main">none</div>
+        </div>
+        <div id="bot_1_score" style="display: flex; justify-content: space-between;">
+            <div>Счёт</div>
+            <div id="score_bot_1_main">none</div>
+        </div>
+        <div id="bot_1_else" style="display: flex; justify-content: center;align-items: center;height: 7vh;">
+            <div id="status_bot_1_main">Ждёт...</div>
+            
+        </div>
+    </div>
+</div>
+    <div id="time_div_main" style="display: none; position: absolute;width: 10vw;top: 20vh;left: 45vw;background-color:rgba(0, 0, 0, 0.1);text-align: center;border-radius: 5px;">kjrhgisunrge</div>
+<button id="score_div" style="outline: none;position: absolute; text-align: right; font-family: 'Kelly Slab', cursive; position: absolute; background-color: rgb(0, 255, 191); top: 0vh; left: 91.65vw; width: 17vh; height: 7vh; padding: 1vh; align-items: center; font-size: xx-large; border: 0px;">0</button>
+    <script>
+        score_div.onclick=function(){
+            var red_color=getRandomInt(0,256)
+            var green_color=getRandomInt(0,256)
+            var blue_color=getRandomInt(0,256)
+                score_div.style.backgroundColor="rgb("+red_color+","+green_color+","+blue_color+")"
+            if(score_podrobno.style.display=="none"){score_podrobno.style.display="block"}
+            else if(score_podrobno.style.display=="block"){score_podrobno.style.display="none"}
+            if(score_sravn_main.style.display=="none"){score_sravn_main.style.display="block"}
+            else if(score_sravn_main.style.display=="block"){score_sravn_main.style.display="none"}
+            /*var x=setInterval(color_random,1)
+            function color_random(){
+                red_color+=  getRandomInt(-25,25)
+                green_color+=getRandomInt(-25,25)
+                blue_color+= getRandomInt(-25,25)
+                
+                score_div.style.backgroundColor="rgb("+red_color+","+green_color+","+blue_color+")"
+            }*/
+        }
+    </script>
+<div id="table_main">
+        <div id="koloda" style="position: absolute;top: 25vh;left:40vw;">
+            <div id="img_of_coloda_div" style="width: 10vw;height: 30vh;"> <div id="numer_of_cards_in_coloda" style="width: 10vw;height: 30vh;z-index: 10; background-color: rgba(0, 0, 0, 0);position: absolute;color:black; display: flex; align-items: center;justify-content: center;font-size:xxx-large; font-family: 'Fredoka One', cursive;">52</div> <img src="card_back_koloda.png" alt="ERROR" id="img_of_coloda" style="width: 100%;height: 100%;"></div>
+            <div id="img_of_sbros_div"  style="margin-left: 12vw; margin-top:-30vh; width: 10vw;height: 30vh;"> <div id="numer_of_cards_in_sbros" style="width: 10vw;height: 30vh;z-index: 10; background-color: rgba(0, 0, 0, 0);position: absolute;color:black; display: flex; align-items: center;justify-content: center;font-size:xxx-large; font-family: 'Fredoka One', cursive;">0</div> <img src="card_back.png" alt="" id="img_of_sbros" style="width: 100%;height: 100%;"></div>
+        </div>
+        <div id="img_of_coloda_div_1" style="position: absolute;top: 25vh;left:40vw;width: 10vw;height: 30vh;"><img src="card_back.png" alt="ERROR" id="img_of_coloda" style="width: 100%;height: 100%;"></div>
+        <div id="kombo_div_main" style="display: none; position: absolute;width: 10vw;top: 17vh;left: 45vw;background-color:red;text-align: center;border-radius: 5px;">kjrhgisunrge</div>
+        <script>
+            function give_some_card_main_1(){
+                playing_card_main_1.src="card_example.jpg"
+                playing_card_main_2.src="card_example.jpg"
+                playing_card_main_3.src="card_example.jpg"
+                playing_card_main_4.src="card_example.jpg"
+                playing_card_main_5.src="card_example.jpg"
+                /*
+                playing_card_main_1.src="card_back.png"
+                playing_card_main_2.src="card_back.png"
+                playing_card_main_3.src="card_back.png"
+                playing_card_main_4.src="card_back.png"
+                playing_card_main_5.src="card_back.png"
+                */
+            }
+        </script>
+    </div>
+    <div id="game" style="display:none">
+        
+    <div id="player_menu" class="player_menu">
+        <div id="information_main_player" class="information_main_player">
+            <div class="information_min_player_text_1">
+                <div>Имя:</div>
+                <div id="player_name_div">none</div>
+            </div>
+            <div class="information_min_player_text_1">
+                <div>Деньги:</div>
+                <div id="player_money_div_1">none</div>
+            </div>
+            <div class="information_min_player_text_1">
+                <div>Раунд:</div>
+                <div>?/5</div>
+            </div>
+            <div class="information_min_player_text_1">
+                <div>Время:</div>
+                <div id="battle_time_div">xx/xx</div>
+            </div>
+            <div class="information_min_player_text_1">
+                <div>Ставка:</div>
+                <div id="stavka_main_div">none</div>
+            </div>
+        </div>
+
+        <div class="cards_main_div">
+            <img src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" class="playing_card_main_1" id="playing_card_main_1">
+            <img src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" class="playing_card_main_1" id="playing_card_main_2">
+            <img src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" class="playing_card_main_1" id="playing_card_main_3">
+            <img src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" class="playing_card_main_1" id="playing_card_main_4">
+            <img src="../img/cards_jpeg_test_v1/JPEG/undifined_card/undefined.jpg" alt="ERROR" class="playing_card_main_1" id="playing_card_main_5">
+        </div>
+           <div id="buttons_main" class="buttons_main">
+                <button id="button_main_2" style="width:34.5vh;height:25%">?</button>
+                <button id="button_main_3" style="width:34.5vh;height:25%">Чат</button>
+                <button id="button_main_4" style="width:34.5vh;height:25%">Ставка</button>
+                <button id="button_main_5" style="display:block;width:34.5vh;height:25%;background-color:red">Выдать карты</button>
+                <button id="button_main_6" style="display:none;width:34.5vh;height:25%;background-color:blue;color:white">Поменять карты</button>
+                <button id="button_main_1" style="display:none;width:34.5vh;height:25%;background-color:yellow">Выложить</button>
+            </div>
+        
+    </div>
+    <!---->
+    <div id="change_kards" style="position: absolute;display: none;justify-content: space-between;/*height: 20vh;*/width: 39.5vw;background-color: rgba(0, 0, 0, 0);left: 29.5vw;top: 80vh;">
+        <button id="button_for_change_1_2" style="/*position: absolute;*/display: flex;height: 15%;width: 4%;text-align: center;background-color: rgba(0, 0, 0, 0);border: black 1px dashed;border-radius: 5px;"> &#8596;</button>
+        <button id="button_for_change_2_3" style="/*position: absolute;*/display: flex;height: 15%;width: 4%;text-align: center;background-color: rgba(0, 0, 0, 0);border: black 1px dashed;border-radius: 5px;"> &#8596;</button>
+        <button id="button_for_change_3_4" style="/*position: absolute;*/display: flex;height: 15%;width: 4%;text-align: center;background-color: rgba(0, 0, 0, 0);border: black 1px dashed;border-radius: 5px;"> &#8596;</button>
+        <button id="button_for_change_4_5" style="/*position: absolute;*/display: flex;height: 15%;width: 4%;text-align: center;background-color: rgba(0, 0, 0, 0);border: black 1px dashed;border-radius: 5px;"> &#8596;</button>
+    </div>
+    <script>
+        
+    button_for_change_1_2.onclick=function(){change(1,2)}
+    button_for_change_2_3.onclick=function(){change(2,3)}
+    button_for_change_3_4.onclick=function(){change(3,4)}
+    button_for_change_4_5.onclick=function(){change(4,5)}
+    </script>
+    <div id="instruments_main_player">
+        <!---->
+        <div id="stavka_div" class="stavka_div" style="display: none;">
+            <div class="h1_stavka_div_div" style="width: 100%;display: flex;justify-content: center;">
+                <h3 id="h1_stavka_div" class="h1_stavka_div">Сколько вы хотите поставить?</h3>
+            </div>
+            <div class="stavka_input_div" id="stavka_input_div" style="width: 100%;display: flex;justify-content: center;">
+                <input type="number" step="50" min="50" value="50" max=player_money id="stavka_input" class="stavka_input" style="width:90%;">
+            </div>
+            <div class="button_stavka_input_div" id="button_stavka_input_div" style="display:block;width: 100%;display: flex;justify-content: center;margin-top: 1vh;">
+                <button id="button_stavka_input_1" style="width:50%;color: black;margin-left: 5vw;">Поставить</button>
+            </div>
+            <div class="button_stavka_input_div_inc" id="button_stavka_input_div_inc" style="display:none;width: 100%;display: flex;justify-content: center;margin-top: 1vh;">
+                <div style="width: 55%;color: red;margin-left: 4vw;">У вас нет стольки денег</div>
+            </div>
+        </div>
+        <!---->
+        <div id="chat_div" class="chat_div" style="display:none;">
+            <div id="text_plase_chat" class="text_plase_chat" style="width: 94%;height: 71%;padding: 3%; overflow: scroll;"></div>
+            <div id="main_writer_instruments" class="main_writer_instruments" style="width:100%;height:20%;box-shadow: inset 0 0 5px;margin-top: 0.3vh;">
+                <input type="text" id="chat_main_input" class="chat_main_input" style="margin-left:5%;margin-top: 6vh;width:80%;height:4vh;">
+                <button id="send_chat_main_button" class="send_chat_main_button" style="height: 4.5vh;width: 9%;">Send</button>
+            </div>
+
+            </div>
+        </div>
+    
+
+    <img src="kombination.png" alt="ERROR" id="kombinations_img" class="kombinations_img_" style="z-index: 50;display:none;position: absolute;left: 40vw;top: 2vh;width: 20vw;height: 60vh;">
+    <script>
+        button_stavka_input_1.onclick=function(){
+            stavka_amount=stavka_input.value-0
+            player_money-=(stavka_input.value-0)
+            player_money_div_1.innerHTML=player_money;
+            stavka_main_div.innerHTML=stavka_input.value-0;
+            stavka_div.style.display="none"
+                stavka_input.value=""
+        }
+        send_chat_main_button.onclick=function(){
+            send_text(player_name,chat_main_input.value)
+            check_comand(chat_main_input.value)
+            chat_main_input.value=""
+            
+        }
+        button_main_5.onclick=function(){
+            give_cards_main()
+            numer_of_cards_in_coloda.innerHTML=kol_coloda
+        }
+        button_main_4.onclick=function(){
+            if(stavka_div.style.display=="none"){
+                stavka_div.style.display="block"
+            }
+            else if(stavka_div.style.display=="block"){
+                stavka_div.style.display="none"
+                stavka_input.value=""
+            }
+        }
+        button_main_2.onclick=function(){
+            if(kombinations_img.style.display=="none"){
+                kombinations_img.style.display="block"
+            }
+            else if(kombinations_img.style.display=="block"){
+                kombinations_img.style.display="none"
+            }
+        }
+        button_main_1.onclick=function(){
+            console.log("button_main_1.onclick\nlay_out_main()")
+            lay_out_main()
+            player_last_komb_func_1()
+            console.log("button_main_1.onclick\nlay_out_main()\nend")
+            if(kombo_div_main.textContent!="Старшая карта"){stavka_operation_1(true)}
+            else{stavka_operation_1(false)}
+            numer_of_cards_in_sbros.innerHTML=kol_sbros
+            sravn_score_adapt_1()
+            helps_func_3("Берёт карты...")
+            setTimeout(bot_1_turn,5000)
+        }
+        
+        replacement_cards.splice(replacement_cards.indexOf("playing_card_main_1"), 1); // начиная с позиции replacement_cards.indexOf("playing_card_main_1"), удалить 1 элемент
+        playing_card_main_1.onclick=function(){if(cards_act=="replacement"){if(playing_card_main_1.style.opacity!="0.5"){ replacement_cards[replacement_cards.length]="playing_card_main_1";playing_card_main_1.style.opacity="0.5"}else if(playing_card_main_1.style.opacity=="0.5"){replacement_cards.splice(replacement_cards.indexOf("playing_card_main_1"), 1);playing_card_main_1.style.opacity="1"}}}
+        playing_card_main_2.onclick=function(){if(cards_act=="replacement"){if(playing_card_main_2.style.opacity!="0.5"){ replacement_cards[replacement_cards.length]="playing_card_main_2";playing_card_main_2.style.opacity="0.5"}else if(playing_card_main_2.style.opacity=="0.5"){replacement_cards.splice(replacement_cards.indexOf("playing_card_main_1"), 1);playing_card_main_2.style.opacity="1"}}}
+        playing_card_main_3.onclick=function(){if(cards_act=="replacement"){if(playing_card_main_3.style.opacity!="0.5"){ replacement_cards[replacement_cards.length]="playing_card_main_3";playing_card_main_3.style.opacity="0.5"}else if(playing_card_main_3.style.opacity=="0.5"){replacement_cards.splice(replacement_cards.indexOf("playing_card_main_1"), 1);playing_card_main_3.style.opacity="1"}}}
+        playing_card_main_4.onclick=function(){if(cards_act=="replacement"){if(playing_card_main_4.style.opacity!="0.5"){ replacement_cards[replacement_cards.length]="playing_card_main_4";playing_card_main_4.style.opacity="0.5"}else if(playing_card_main_4.style.opacity=="0.5"){replacement_cards.splice(replacement_cards.indexOf("playing_card_main_1"), 1);playing_card_main_4.style.opacity="1"}}}
+        playing_card_main_5.onclick=function(){if(cards_act=="replacement"){if(playing_card_main_5.style.opacity!="0.5"){ replacement_cards[replacement_cards.length]="playing_card_main_5";playing_card_main_5.style.opacity="0.5"}else if(playing_card_main_5.style.opacity=="0.5"){replacement_cards.splice(replacement_cards.indexOf("playing_card_main_1"), 1);playing_card_main_5.style.opacity="1"}}}
+        //
+        button_main_6.onclick=function(){
+            change_main()
+            numer_of_cards_in_sbros.innerHTML=kol_sbros
+        }
+        button_main_3.onclick=function(){
+            if(chat_div.style.display=="none"){
+                chat_div.style.display="block"
+            }
+            else if(chat_div.style.display=="block"){
+                chat_div.style.display="none"
+            }
+        }
+
+    </script>
+    </div>
+</div>
+</body>
+
+</html>

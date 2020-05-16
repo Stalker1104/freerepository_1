@@ -1,0 +1,12 @@
+text to delete
+--------------
+x_1=setTimeout(console.log,1000,"00:00")
+x_1=setTimeout(console.log,2000,"00:01")
+x_1=setTimeout(console.log,3000,"00:02")
+x_1=setTimeout(console.log,4000,"00:03")
+x_1=setTimeout(console.log,5000,"00:04")
+x_1=setTimeout(console.log,6000,"00:05")
+x_1=setTimeout(console.log,7000,"00:06")
+x_1=setTimeout(console.log,8000,"00:07")
+x_1=setTimeout(console.log,9000,"00:08")
+x_1=setTimeout(console.log,10000,"00:09")
